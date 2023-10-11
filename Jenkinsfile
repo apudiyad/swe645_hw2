@@ -2,6 +2,7 @@ pipeline {
    environment {
         registry = "apudiyad/student-survey-form"
         registryCredential = 'dockerhub'
+      dockerImageTag = 'latest'
     }
    agent any
 
