@@ -3,10 +3,16 @@ pipeline
     environment
     {
         registry = "apudiyad/homework2"
-        registryCredential = 'dockerhub'
+        registryCredential = 'Docker'
         dockerImageTag = 'latest'
     }
    agent any
+    stages {
+stage('Cloning our Git') {
+steps {
+git 'https://github.com/YourGithubAccount/YourGithubRepository.git'
+}
+}
 
    stage('Build and Push Docker Image') 
    {
