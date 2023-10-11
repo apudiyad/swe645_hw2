@@ -1,6 +1,6 @@
 pipeline {
    environment {
-        registry = "srinathsilla/student-survey-form"
+        registry = "apudiyad/student-survey-form"
         registryCredential = 'dockerhub'
     }
    agent any
