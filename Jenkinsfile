@@ -7,19 +7,15 @@ pipeline {
    agent any
 
    stages {
-      stage('Build') {
-         steps {
-            echo 'Building...'
-            script{
-               sh 'rm -rf *.war'
-               sh 'jar -cvf student-survey-form.war -C src/main/webapp/ .'
-               docker.withRegistry('',registryCredential){
-                  def customImage = docker.build("apudiyad/student-survey-form:${env.BUILD_NUMBER}")
-               }
+        stage('Build and Push Docker Image') {
+            steps {
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com', 'DockerHub_Credentials') {
+                        docker.image('apudiyad/homework2:latest').push()
+                    }
+                }
             }
-         }
-      }
-
+        }
       stage('Push Image to Dockerhub') {
          steps {
             echo 'pushing to image to docker hub'
